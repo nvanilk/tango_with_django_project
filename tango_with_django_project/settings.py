@@ -1,3 +1,4 @@
+#settings.py
 """
 Django settings for tango_with_django_project project.
 
