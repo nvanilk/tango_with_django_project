@@ -1,4 +1,4 @@
-#settings.py
+#settings.py -- Vital Django settings
 """
 Django settings for tango_with_django_project project.
 

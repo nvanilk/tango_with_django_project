@@ -1,3 +1,4 @@
+#urls.py - URLs to views.
 """tango_with_django_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
