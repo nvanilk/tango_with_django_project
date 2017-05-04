@@ -1,4 +1,5 @@
-#settings.py -- Vital Django settings
+#settings.py
+#Original Author : N.V. Anil Kumar
 """
 Django settings for tango_with_django_project project.
 
