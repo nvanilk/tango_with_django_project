@@ -16,6 +16,8 @@ def index(request):
     #return HttpResponse("Rango says hey  there partner! <br/> <a href='/rango/about/'>About</a>")
 
 def about(request):
-    return HttpResponse("Rango is an application to enable users to rank various items and categories... <a href='/rango/' >Index<\a>")
+    #return HttpResponse("Rango is an application to enable users to rank various items and categories... <a href='/rango/' >Index<\a>")
+    context_dict={'boldmessage':"Praying Hands Tech Ventures"} 
+    return render(request,'rango/about.html', context=context_dict)
 
 
