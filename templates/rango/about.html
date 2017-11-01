@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>About Rango</title>
+</head>
+<body>
+    <img src="{% static "images/floral-vector-design-pattern.jpg" border=3 align=LEFT width=10 height=10 hspace=5 vspace=5 %}" >
+    <h1 align=CENTER><FONT COLOR="RED">Rango Application Team...</FONT></h1>
+    <div>
+      This tutorial has been put together by <B><I><U><Blink>Anil Kumar N.V.</Blink></U></I></B> <br />
+	<strong>{{boldmessage}} </strong> <br />
+    </div>
+    <div>
+	<a href="/rango/">Index</a><br />
+        <img src="{{MEDIA_URL}}Thands.jpg"
+             alt="Picture of thanking hands." />
+    </div>
+</body>
+</html>

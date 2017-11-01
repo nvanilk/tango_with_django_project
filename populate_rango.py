@@ -14,13 +14,78 @@ def populate() :
 
     python_pages=[
         {'title':'Official Python Tutorial',
-         'url':'http://docs.python.org/2/tutorial/' ,
-         'title': 'How to Think like a Computer Scientist',
-         'url': 'http://www.greenteapress.com/thinkpython/',
-         'title': 'Learn Python in 10 Minutes',
-         'url': 'http://www.korokithakis.net/tutorials/python/',
-         'title': 'Expert Python Programming, 2nd Edition',
+         'url':'http://docs.python.org/2/tutorial/' } ,
+         {'title': 'How to Think like a Computer Scientist',
+         'url': 'http://www.greenteapress.com/thinkpython/' } ,
+         {'title': 'Learn Python in 10 Minutes',
+         'url': 'http://www.korokithakis.net/tutorials/python/' } ,
+         {'title': 'Expert Python Programming, 2nd Edition',
          'url': 'https://github.com/PacktPublishing/Expert-Python-Programming_Second-Edition/'}]
 
+    django_pages=[
+       { 'title':'Official Django Tutorial',
+         'url':'https://docs.djangoproject.com/en/19/intro/tutorial01/'} ,
+       {'title': 'Django Rocks',
+         'url': 'http://www.djangorocks.com/'} ,
+       {'title': 'How to Tango with Django',
+         'url': 'http://www.tangowithdjango.com/'} ,
+       {'title': 'Django Tutorials',
+         'url': 'http://www.tutorialpoint.com/django'}]
 
-    ]
+    other_pages=[
+       { 'title':'Bottle',
+         'url':'http://bottlepy.org/docs/dev/'} ,
+        { 'title':'Flask',
+         'url':'http://Flask.pocoo.org/'} ,
+        { 'title':'Pyramid',
+         'url':'http://pylonsproject.org/'} ,
+        { 'title':'Zope 2',
+         'url':'http://zope2.zope.org/'}]
+
+    cats={"Python":{"pages":python_pages,"views":128,"likes":64},
+          "Django":{"pages":django_pages,"views":64,"likes":32},
+          "Other Frameworks":{"pages":other_pages,"views":32,"likes":16}
+         }
+
+    # If you want to add more categories oar pages add them to the dictionaries above.
+    #
+    #The code below goes through the cats dictionary, then adds each category,
+    # and then adds all the associated pages for that category.
+    # If you are using Python 2.x then use cats.iteritems(). See
+    # http://docs.quantifiedcode.com/python-anti-patterns/readability/ for more information
+    # on how to iterate over a dictionary properly.
+
+    for cat, cat_data in cats.iteritems() :
+        c=add_cat(cat,cat_data["views"],cat_data["likes"])
+        for p in cat_data["pages"] :
+            add_page(c,p["title"],p["url"])
+
+    #Print out the categories we have added.
+    for c in Category.objects.all():
+        for p in Page.objects.filter(category=c):
+            print(" - {0} - {1}".format(str(c),str(p)))
+
+def add_page(cat,title,url,views=0):
+    p=Page.objects.get_or_create(category=cat,title=title)[0]
+    p.url=url
+    p.views=views
+    p.save()
+    return p
+
+def add_cat(Name,Views,Likes):
+    #c=Category.objects.get_or_create(name=Name)
+    c=Category.objects.get(name=Name)
+    c.likes=Likes
+    c.views=Views
+    #c=Category.objects.get_or_create(views=Views)
+    #c=Category.objects.get_or_create(likes=Likes)
+    c.save()
+    return c
+
+# Start execution here...
+
+if __name__=='__main__':
+    print("Starting Rango population script...")
+    populate()
+
+
